@@ -21,7 +21,7 @@
       <div class="header-nav-left">
         <ul class="left-list" v-show="!isOpen">
           <li v-for="(item, index) in NavArr" :key="index" @click="addActive(index)">
-            <a href="javascript:" :class=" item.selected ? 'active' : ''">{{item.type}}</a>
+            <a href="javascript:"  :class="{'active':item.selected}">{{item.type}}</a>
           </li>
         </ul>
       </div>
@@ -73,7 +73,6 @@
 
 <script>
 import BScroll from 'better-scroll'
-import { log } from 'util'
 export default {
   data() {
     return {
