@@ -1,24 +1,39 @@
 <template>
   <footer id="tabBar-wrap">
     <ul class="m-tabBar">
-     <li class="item" :class="{active: $route.path === '/home'}" >
-        <i class="u-icon" :class=" $route.path === '/home' ? 'icon-home-tabBar-active' : 'icon-home-tabBar'"></i>
+      <li class="item" :class="{active: $route.path === '/home'}" @click="goTo('/home')">
+        <i
+          class="u-icon"
+          :class=" $route.path === '/home' ? 'icon-home-tabBar-active' : 'icon-home-tabBar'"
+        ></i>
         <span class="text">首页</span>
       </li>
-      <li class="item">
-        <i class="u-icon" :class=" $route.path === '/category' ? 'icon-category-tabBar-active' : 'icon-category-tabBar'"></i>
+      <li class="item" @click="goTo('/category')">
+        <i
+          class="u-icon"
+          :class=" $route.path === '/category' ? 'icon-category-tabBar-active' : 'icon-category-tabBar'"
+        ></i>
         <span class="text">分类</span>
       </li>
-      <li class="item">
-        <i class="u-icon" :class=" $route.path === '/things' ? 'icon-things-tabBar-active' : 'icon-things-tabBar'"></i>
+      <li class="item" @click="goTo('/things')">
+        <i
+          class="u-icon"
+          :class=" $route.path === '/things' ? 'icon-things-tabBar-active' : 'icon-things-tabBar'"
+        ></i>
         <span class="text">识物</span>
       </li>
-      <li class="item">
-        <i class="u-icon" :class=" $route.path === '/shopcar' ? 'icon-shocar-tabBar-active' : 'icon-shocar-tabBar'"></i>
+      <li class="item" @click="goTo('/shopcar')">
+        <i
+          class="u-icon"
+          :class=" $route.path === '/shopcar' ? 'icon-shocar-tabBar-active' : 'icon-shocar-tabBar'"
+        ></i>
         <span class="text">购物车</span>
       </li>
-      <li class="item">
-        <i class="u-icon" :class=" $route.path === '/personal' ? 'icon-Personal-tabBar-active' : 'icon-Personal-tabBar'"></i>
+      <li class="item" @click="goTo('/personal')">
+        <i
+          class="u-icon"
+          :class=" $route.path === '/personal' ? 'icon-Personal-tabBar-active' : 'icon-Personal-tabBar'"
+        ></i>
         <span class="text">个人</span>
       </li>
     </ul>
@@ -27,8 +42,13 @@
 
 <script>
 export default {
-  data() {
-    return {}
+  name: 'FooterGuide',
+  methods: {
+    goTo(path) {
+      if (this.$route.path !== path) {
+        this.$router.replace(path)
+      }
+    }
   }
 }
 </script>
@@ -44,13 +64,13 @@ export default {
   height 100px
   background-color $footerBgc
   border-top 0.75px solid $borderBgc
-  z-index 200
   .m-tabBar
     width 100%
     height 100%
     display flex
     align-items center
     .item
+      width 100%
       flex 1
       text-align center
       &.active
