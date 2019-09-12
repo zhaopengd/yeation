@@ -1,16 +1,19 @@
 <template>
   <div class="home-wrap">
+    <!-- 轮播 -->
     <Swiper />
+    <!-- 网易自营品牌 -->
     <Service />
+    <!-- 用户导航 -->
     <UserNav />
+
     <div class="bossMan">
-      <img
-        src="https://yanxuan.nosdn.127.net/df012027a9bd3c0b0e5779c11b814180.png"
-        alt="bossMan"
-      />
+      <img src="https://yanxuan.nosdn.127.net/df012027a9bd3c0b0e5779c11b814180.png" alt="bossMan" />
     </div>
-    <Scene/>
-    <Custom/>
+    <!-- 片段 实时好评榜 -->
+    <Scene />
+    <!-- 私人订制 -->
+    <Custom />
   </div>
 </template>
 
@@ -32,15 +35,15 @@ export default {
 </script>
 
 <style lang='stylus' rel='stylesheet/stylus' scoped>
-  @import "../../common/stylus/mixins.styl"
-  /* 设置HOME下所有子组件的公共样式 */
-.home-wrap  
-    padding-top 150px
-    padding-bottom 98px
-    .bossMan
-      height 160px
-      margin-bottom 40px
-      background-color #fff
-      img
-        height 100%
+@import '../../common/stylus/mixins.styl'
+/* 设置HOME下所有子组件的公共样式 */
+.home-wrap
+  padding-top 150px
+  padding-bottom 98px
+  .bossMan
+    height 160px
+    margin-bottom 40px
+    background-color #fff
+    img
+      height 100%
 </style>

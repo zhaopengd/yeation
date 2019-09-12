@@ -2,50 +2,26 @@
   <header class="header-wrap">
     <div class="header-wrap-top">
       <img
-        src='http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-a90bdaae6b.png'
+        src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-a90bdaae6b.png"
         alt="网易严选"
       />
 
-      <div class="search_box" >
+      <div class="search_box">
         <img
-          src='http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-553dba3aff.png'
+          src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-553dba3aff.png"
           alt="放大镜"
         />
         <span class="placeholder">搜索商品，共21726件好物</span>
       </div>
 
-      <span class="login_btn" >登录</span>
+      <span class="login_btn">登录</span>
     </div>
 
     <div class="header-wrap-nav">
       <div class="header-nav-left">
-        <ul class="left-list clearfix">
-          <li>
-            <a  href="javascript:">推荐</a>
-          </li>
-          <li>
-            <a  href="javascript:">居家生活</a>
-          </li>
-          <li>
-            <a  href="javascript:">服饰鞋包</a>
-          </li>
-          <li>
-            <a  href="javascript:">美食酒水</a>
-          </li>
-          <li>
-            <a  href="javascript:">个户清洁</a>
-          </li>
-          <li>
-            <a  href="javascript:">母婴亲子</a>
-          </li>
-          <li>
-            <a  href="javascript:">运动旅行</a>
-          </li>
-          <li>
-            <a  href="javascript:">数码家电</a>
-          </li>
-          <li>
-            <a  href="javascript:">礼品特色</a>
+        <ul class="left-list" v-show="!isOpen">
+          <li v-for="(item, index) in NavArr" :key="index" @click="addActive(index)">
+            <a href="javascript:" :class=" item.selected ? 'active' : ''">{{item.type}}</a>
           </li>
         </ul>
       </div>
@@ -53,12 +29,13 @@
         <span class="linear"></span>
         <div class="img_box">
           <img
-            src='http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/arrow-down-3-799ded53ea.png'
+            src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/arrow-down-3-799ded53ea.png"
             alt="展开"
+            @click="isOpen=!isOpen"
           />
         </div>
       </div>
-      <div class="nav-all-list" v-show="false">
+      <div class="nav-all-list" v-show="isOpen">
         <p>全部频道</p>
         <ul class="all_nav clearfix">
           <li>
@@ -95,8 +72,42 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll'
+import { log } from 'util'
 export default {
-
+  data() {
+    return {
+      NavArr: [
+        { type: '全部', selected: true },
+        { type: '食品', selected: false },
+        { type: '餐饮', selected: false },
+        { type: '药品', selected: false },
+        { type: '医疗器械', selected: false },
+        { type: '化妆品', selected: false }
+      ],
+      isOpen: false
+    }
+  },
+  methods: {
+    addActive(index) {
+      for (let i = 0; i < this.NavArr.length; i++) {
+        this.NavArr[i].selected = false
+      }
+      this.NavArr[index].selected = true
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      if (!this.bScroll) {
+        this.bScroll = new BScroll('.header-nav-left', {
+          click: true,
+          scrollX: true
+        })
+      } else {
+        this.bScroll.refresh()
+      }
+    })
+  }
 }
 </script>
 
@@ -158,6 +169,7 @@ export default {
       width 100%
       overflow hidden
       >.left-list
+        display flex
         float left
         padding-right 150px
         display flex
@@ -172,11 +184,11 @@ export default {
           font-size 28px
           line-height 60px
           width 150px
-          a.active
-            box-sizing border-box
-            min-width 90px
-            color $themeColor
-            border-bottom 6px solid $themeColor
+        a.active
+          box-sizing border-box
+          min-width 90px
+          color $themeColor
+          border-bottom 6px solid $themeColor
     .right-list
       display flex
       flex-grow 0
