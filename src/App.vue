@@ -2,18 +2,18 @@
   <div>
     <router-view></router-view>
     <FooterGuide></FooterGuide>
-    <HeaderSlot></HeaderSlot>
+    <HeaderNav></HeaderNav>
   </div>
 </template>
 
 <script>
 import FooterGuide from './components/FooterGuide/FooterGuide'
-import HeaderSlot from './components/HeaderSlot/HeaderSlot'
+import HeaderNav from './components/HeaderNav/HeaderNav'
 export default {
   // 全局注册组件
   components: {
       FooterGuide,
-      HeaderSlot
+      HeaderNav
   }
 }
 </script>
