@@ -10,7 +10,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.css'
@@ -33,35 +32,22 @@ export default {
       autoplay: true, //可选选项，自动滑动
       loop: true,
       pagination: {
-        el: '.top_swiper .swiper-pagination',
-        type: 'custom',
-        clickable: true,
-        // 自定义分页器
-        renderCustom: function(swiper, current, total) {
-          var customPaginationHtml = ''
-          for (var i = 0; i < total; i++) {
-            //判断哪个分页器此刻应该被激活
-            if (i === current - 1) {
-              customPaginationHtml +=
-                '<span class="swiper-pagination-customs swiper-pagination-customs-active"></span>'
-            } else {
-              customPaginationHtml +=
-                '<span class="swiper-pagination-customs"></span>'
-            }
-          }
-          return customPaginationHtml
-        }
+        el: '.swiper-pagination',
       }
     })
   }
 }
 </script>
 
-<style  lang="stylus" rel="stylesheet/stylus" scoped>
+<style  lang="stylus" rel="stylesheet/stylus" >
 .swiper-container
   width 100%
   height 367.5px
   font-size 200px
+  .swiper-pagination-bullet
+    width 50px
+    border-radius 15%
+    height 5px
   .swiper-slide
     position relative
     img
@@ -71,84 +57,4 @@ export default {
       left 0
       top 180px
       transform translateY(-50%)
-</style>
-<style>
-/* 注意： 不能在 scoped 中写轮播图的样式 */
-/* 自定义分页器的样式，这个你自己想要什么样子自己写 */
-.swiper-pagination-customs {
-  width: 40px;
-  height: 4px;
-  display: inline-block;
-  background: #fff;
-  opacity: 0.4;
-  border-radius: 0;
-  margin: 0 10px 0 0;
-}
-
-/*自定义分页器激活时的样式表现*/
-.swiper-pagination-customs-active {
-  opacity: 1;
-  background: #f00;
-  border-radius: 0;
-}
-
-.swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #333;
-  border: none;
-  vertical-align: middle;
-}
-
-.swiper-pagination-bullet-active {
-  border: none;
-  display: inline-block;
-  vertical-align: middle;
-  background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/bullet-active-90b9116b84.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  width: 12px;
-  height: 12px;
-}
-</style>
-<style>
-/* 注意： 不能在 scoped 中写轮播图的样式 */
-/* 自定义分页器的样式，这个你自己想要什么样子自己写 */
-.swiper-pagination-customs {
-  width: 40px;
-  height: 4px;
-  display: inline-block;
-  background: #fff;
-  opacity: 0.4;
-  border-radius: 0;
-  margin: 0 10px 0 0;
-}
-
-/*自定义分页器激活时的样式表现*/
-.swiper-pagination-customs-active {
-  opacity: 1;
-  background: #f00;
-  border-radius: 0;
-}
-
-.swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #333;
-  border: none;
-  vertical-align: middle;
-}
-
-.swiper-pagination-bullet-active {
-  border: none;
-  display: inline-block;
-  vertical-align: middle;
-  background-image: url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/bullet-active-90b9116b84.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  width: 12px;
-  height: 12px;
-}
 </style>

@@ -117,6 +117,7 @@ export default {
   position fixed
   top 0
   left 0
+  z-index 2
   .header-wrap-top
     position relative
     display flex
