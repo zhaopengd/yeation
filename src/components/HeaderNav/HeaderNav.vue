@@ -6,7 +6,7 @@
         alt="网易严选"
       />
 
-      <div class="search_box">
+      <div class="search_box"  @click="$router.push('/search')">
         <img
           src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-553dba3aff.png"
           alt="放大镜"
@@ -14,7 +14,7 @@
         <span class="placeholder">搜索商品，共21726件好物</span>
       </div>
 
-      <span class="login_btn">登录</span>
+      <span class="login_btn" @click="$router.push('/personal/emaillogin')">登录</span>
     </div>
 
     <div class="header-wrap-nav">

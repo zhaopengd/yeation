@@ -1,61 +1,61 @@
 <template>
   <div class="user_nav">
-    <ul >
-      <li >
+    <ul>
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
         </a>
       </li>
-      <li >
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
         </a>
       </li>
-      <li >
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
         </a>
       </li>
-      <li >
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
         </a>
       </li>
-      <li >
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
         </a>
       </li>
-      <li >
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
         </a>
       </li>
-      <li >
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
         </a>
       </li>
-      <li >
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
         </a>
       </li>
-      <li >
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
         </a>
       </li>
-      <li >
+      <li>
         <a href="javascript:">
           <img src="./shopCatgorys/01.png" alt="nav.text" />
           <p>居家</p>
@@ -66,11 +66,16 @@
 </template>
 
 <script>
-
-
+import { mapState } from 'vuex'
 export default {
   name: 'UserNav',
- 
+  computed: {
+    ...mapState(['homeData'])
+  },
+
+  async mounted() {
+    await this.$store.dispatch('getHomeData')
+  }
 }
 </script>
 

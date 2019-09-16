@@ -1,9 +1,11 @@
+
 <template>
   <div class="header_slot_box">
     <div class="left_box" @click="$router.replace('/home')">
       <i class="iconfont icon-shouye"></i>
     </div>
     <div class="center_box">
+      <!-- 中间三个插槽 提供三个选项  想显示那个内容  就 name 哪个  下面注释已经标注 -->
       <slot name="netease"></slot>
       <!--<div slot="netease"><span class="netease">网易严选</span></div>-->
       <slot name="fond"></slot>
