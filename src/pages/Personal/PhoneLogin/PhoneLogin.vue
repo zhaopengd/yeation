@@ -14,7 +14,7 @@
 
     <label class="input_code">
       <input type="text" placeholder="请输入手机验证码" v-model="user.code" />
-      <div class="get_phone_code">获取验证码</div>
+      <div class="get_phone_code" @click="getCode">获取验证码</div>
     </label>
     <div class="login_help">
       <span>遇到问题?</span>
@@ -27,7 +27,49 @@
 </template>
 
 <script>
-export default {}
+import { Toast} from 'mint-ui'
+import 'mint-ui/lib/style.css'
+export default {
+  name: 'PhoneLogin',
+  data() {
+    return {
+      curIndex: 3,
+      user: {
+        phone: '',
+        code: ''
+      },
+      phone_tips: '',
+      code_tips: ''
+    }
+  },
+  watch: {
+    user: {
+      deep: true,
+      handler(newUser, oldUser) {
+        if (/^1[0-9]{10}$/.test(newUser.phone)) {
+          this.phone_tips = ''
+        } else {
+          this.phone_tips = '请输入正确的手机号码'
+        }
+        if (/^[0-9]{6}$/.test(newUser.code)) {
+          this.code_tips = ''
+        } else {
+          this.code_tips = '请输入正确的验证码'
+        }
+      }
+    }
+  },
+  methods: {
+    toLogin() {
+      if (this.phone_tips === '' && this.code_tips === '') {
+        Toast('登录成功')
+      }
+    },
+    getCode(){
+      Toast('验证码已发送')
+    }
+  }
+}
 </script>
 
 <style  lang="stylus" rel="stylesheet/stylus" scoped>
@@ -37,7 +79,7 @@ export default {}
   .top_logo
     width 100%
     height 133px
-    margin 56px 0 135px 0
+    margin 56px 0 135px 230px
     img
       width 192px
       height 64px

@@ -1,7 +1,9 @@
 <template>
   <div class="personal_box" :class="{is_personal:($route.path === '/personal')}">
     <HeaderSlot>
-        <div slot="netease"><span class="netease">网易严选</span></div>
+      <div slot="netease">
+        <span class="netease">网易严选</span>
+      </div>
     </HeaderSlot>
     <div class="content_box" v-if="$route.path === '/personal'">
       <div class="top_login">
@@ -30,7 +32,7 @@
         <li>
           <a href="javascript:">
             <i class="iconfont icon-qq"></i>
-            <span>QQ</span>
+            <span @click="toast">QQ</span>
           </a>
         </li>
         <li>|</li>
@@ -50,11 +52,20 @@
 </template>
 
 <script>
+import {Toast,Icon} from 'mint-ui'
 export default {
   name: 'Personal',
   data() {
     return {
       curPos: 'fond'
+    }
+  },
+  methods: {
+    toast() {
+      Toast({
+        message: '操作成功',
+        iconClass: 'icon icon-success'
+      })
     }
   }
 }
