@@ -1,64 +1,10 @@
 <template>
   <div class="user_nav">
-    <ul>
-      <li>
+    <ul v-if="homeData.kingKongModule">
+      <li v-for="(nav, index) in homeData.kingKongModule.kingKongList" :key="index">
         <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:">
-          <img src="./shopCatgorys/01.png" alt="nav.text" />
-          <p>居家</p>
+          <img  :src="nav.picUrl" :alt="nav.text" />
+          <p>{{nav.text}}</p>
         </a>
       </li>
     </ul>
