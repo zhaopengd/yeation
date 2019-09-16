@@ -64,6 +64,7 @@ export default {
   height 100px
   background-color $footerBgc
   border-top 0.75px solid $borderBgc
+  z-index 222
   .m-tabBar
     width 100%
     height 100%

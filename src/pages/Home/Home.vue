@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style lang='stylus' rel='stylesheet/stylus' scoped>
+<style lang='stylus' rel='stylesheet/stylus'>
 @import '../../common/stylus/mixins.styl'
 /* 设置HOME下所有子组件的公共样式 */
 .home-wrap

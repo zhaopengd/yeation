@@ -2,36 +2,94 @@
   <div class="personal_shop">
     <div class="personal_shop_title">私人订制</div>
     <div class="personal_shop_swiper_box">
-      <div class="swiper-container">
+      <div class="swiper-container-cus">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="personalShop-item">
-            <img src="../Scene/recommended/01.png" alt="">
+          <div class="swiper-slide" v-for="(personalShop, index) in personalShopArr" :key="index">
+            <div class="personalShop-item" v-for="(good ,index) in personalShop" :key="index">
+              <img class="primaryPic" :src="good.primaryPicUrl" :alt="good.name" />
               <div class="text">
-                <span class="name"></span>
-                <span class="price"></span>
+                <span class="name">{{good.name}}</span>
+                <span class="price">¥{{good.retailPrice}}</span>
               </div>
             </div>
           </div>
+
         </div>
-        <!-- 分页器 -->
-        <div class="swiper-pagination"></div>
+
       </div>
+                        <!-- 分页器 -->
+        <div class="cus-swiper-pagination"></div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import Swiper from 'swiper'
 
 export default {
- 
+  name: 'SceneLight',
+  computed: {
+    ...mapState(['homeData']),
+    personalShopArr() {
+      let arr3 = []
+      if (this.homeData.personalShop) {
+        this.homeData.personalShop.reduce((arr, shop) => {
+          arr.push(shop)
+          if (arr.length === 3) {
+            arr3.push(arr)
+            arr = []
+          }
+          return arr
+        }, [])
+      }
+      return arr3
+    }
+  },
+  watch: {
+    personalShopArr(newArr) {
+      this.$nextTick(() => {
+        if (
+          !this.pShopSwiper &&
+          this.homeData &&
+          newArr.length * newArr[0].length === this.homeData.personalShop.length
+        ) {
+          this.pShopSwiper = new Swiper(
+            '.swiper-container-cus',
+            {
+              loop: true,
+              pagination: {
+                el: '.cus-swiper-pagination',
+                clickable: true
+              }
+            }
+          )
+        }
+      })
+    }
+  },
+  async mounted() {
+    await this.$store.dispatch('getHomeData')
+  }
 }
 </script>
 
-<style  lang="stylus" rel="stylesheet/stylus" scoped>
+<style  lang="stylus" rel="stylesheet/stylus">
 @import '../../../common/stylus/mixins.styl'
 .personal_shop
   margin-bottom 80px
+  .cus-swiper-pagination 
+    width 100%
+    left 0
+    bottom 10px
+    text-align center
+    .swiper-pagination-bullet
+      width 12px
+      height 12px
+      margin 0 4px
+      border-radius 50%
+    .swiper-pagination-bullet-active
+      background-image url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/bullet-active-90b9116b84.png)
   .personal_shop_title
     width 100%
     height 100px
@@ -41,7 +99,7 @@ export default {
     background #fff
     overflow hidden
   .personal_shop_swiper_box
-    .swiper-container
+    .swiper-container-cus
       overflow inherit
       .swiper-pagination
         transform translateY(45px)

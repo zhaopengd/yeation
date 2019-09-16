@@ -1,32 +1,17 @@
+
 <template>
   <div class="scene_light">
-    <ul>
-      <li>
-        <p class="title">实时好评榜</p>
-        <p class="desc">精选优质好物</p>
+    <ul v-if="homeData.sceneLightShoppingGuideModule">
+      <li v-for="(shoppingGuide, index) in homeData.sceneLightShoppingGuideModule" :key="index">
+        <p class="title">{{shoppingGuide.styleItem.title}}</p>
+        <p class="desc">{{shoppingGuide.styleItem.desc}}</p>
         <div>
-          <img src="./recommended/01.png" alt />
-        </div>
-      </li>
-      <li>
-        <p class="title">实时好评榜</p>
-        <p class="desc">精选优质好物</p>
-        <div>
-          <img src="./recommended/01.png" alt />
-        </div>
-      </li>
-      <li>
-        <p class="title">实时好评榜</p>
-        <p class="desc">精选优质好物</p>
-        <div>
-          <img src="./recommended/01.png" alt />
-        </div>
-      </li>
-      <li>
-        <p class="title">实时好评榜</p>
-        <p class="desc">精选优质好物</p>
-        <div>
-          <img src="./recommended/01.png" alt />
+          <img
+            :src="itemPic.picUrl"
+            v-for="(itemPic, index) in shoppingGuide.styleItem.itemPicBeanList"
+            :key="index"
+            alt
+          />
         </div>
       </li>
     </ul>
@@ -34,7 +19,17 @@
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+
+export default {
+  name: 'SceneLight',
+  computed: {
+    ...mapState(['homeData'])
+  },
+  async mounted() {
+    await this.$store.dispatch('getHomeData')
+  }
+}
 </script>
 
 <style  lang="stylus" rel="stylesheet/stylus" scoped>
